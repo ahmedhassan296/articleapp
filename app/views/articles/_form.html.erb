@@ -1,0 +1,22 @@
+<%= form_with model: article do |form| %>
+    <div class="field form-group">
+     <br>
+      <%= form.text_field :title,class:"form-control",placeholder:"Title" %>
+      <% article.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  
+    <div class="field form-group">
+      <br>
+      <%= form.text_area :body,class:"form-control",placeholder:"Body" %><br>
+      <% article.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  
+    <div>
+    <%= form.submit 'Save Article', class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+  
