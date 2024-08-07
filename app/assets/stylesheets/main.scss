@@ -2,8 +2,10 @@
 
 $primary-color: #3498db;
 
-.in-main {
+#myElement {
     line-height: 1.5;
-    color: red;
+    color: $primary-color;
+    background-color: black;
   }
 
+  

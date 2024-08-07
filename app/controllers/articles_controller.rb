@@ -23,9 +23,15 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to @article
+      respond_to do |format|
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.json { render json: { success: true, redirect_url: article_url(@article) } }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: { success: false, errors: @article.errors.full_messages } }
+      end
     end
   end
 
@@ -38,9 +44,15 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
+      respond_to do |format|
+        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.json { render json: { success: true, redirect_url: article_url(@article) } }
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: { success: false, errors: @article.errors.full_messages } }
+      end
     end
   end
 
